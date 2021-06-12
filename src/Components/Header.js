@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
+import {useStateValue} from './Provider'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link} from 'react-router-dom'
 import './Header.css'
 
-class Header extends Component{
+function Header(){
+  const [{basket}]  = useStateValue();
 
-  render(){
     return(
       <div className="header">
         <Link to='/'>
@@ -31,16 +32,40 @@ class Header extends Component{
         <span className="header_optionLineOne">Your</span>
         <span className="header_optionLineTwo">Prime</span>
         </div>
-        <Link to='/checkout'>
+
         <div className="header_optBasket">
-        <ShoppingCartIcon />
-        <span className="header_optionLineTwo header_checkOut">0</span>
-        </div>
+        <Link to='/checkout'>
+        <ShoppingCartIcon className="cartLogo"/>
         </Link>
+        <span className="header_optionLineTwo header_checkOut">{basket?.length}</span>
+        </div>
+
         </div>
       </div>
     )
-  }
+
 }
 
+
+// componentDidMount(){
+//   console.log("fetch")
+// fetch('http://localhost:3001/products')
+// .then(resp => resp.json())
+// .then((productList) => {
+//   this.setState({ productList: this.breakList(productList) })
+//   console.log(this.state.productList)
+//
+// })
+//
+// }
+//
+// breakList = (array) => {
+//
+//     let newArrTwo = []
+//     while(array.length > 0){
+//       newArrTwo.push(array.splice(0,3))
+//     }
+//     return newArrTwo
+//
+//   }
 export default Header;

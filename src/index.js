@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import reducer, { initialState } from "./Components/reducer.js";
+import { StateProvider } from "./Components/Provider";
+
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 ReactDOM.render(
@@ -10,7 +13,9 @@ ReactDOM.render(
   //   <Route></Route>
   // </Router>
   <React.StrictMode>
+    <StateProvider initialState={initialState} reducer={reducer}>
     <App />
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

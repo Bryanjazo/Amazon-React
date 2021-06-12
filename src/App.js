@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Components/Header.js'
 import Home from './Components/Home.js'
+import SignIn from './Components/signIn.js'
 import Checkout from './Components/Checkout.js'
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
 // import { Provider } from 'react-redux';
@@ -19,7 +20,7 @@ function App() {
         </Route>
         <Route path='/signIn'>
 
-            <h1>signIn</h1>
+          <SignIn />
         </Route>
         <Route path='/signUp'>
 
