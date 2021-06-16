@@ -8,7 +8,8 @@ import './CartProducts.css'
 const [{ basket }, dispatch] = useStateValue();
 
 
-  const handleCart = () =>{
+
+  const handleItems = () =>{
     console.log('remove item:')
     dispatch({
       type: "REMOVE_FROM_CART",
@@ -17,9 +18,17 @@ const [{ basket }, dispatch] = useStateValue();
     });
   }
 
+  const handleCart = () =>{
+    console.log('remove item:')
+    dispatch({
+      type: "EMPTY_BASKET",
+        id: id,
+
+    });
+  }
     return(
       <div className='checkoutProduct'>
-           <img className='checkoutProduct__image' src={image} />
+           <img className='checkoutProduct__image' alt='' src={image} />
 
            <div className='checkoutProduct__info'>
                <p className='checkoutProduct__title'>{title}</p>
@@ -34,11 +43,12 @@ const [{ basket }, dispatch] = useStateValue();
                        <StarRateIcon />
                    ))}
                </div>
-               {!hideButton && (
-                   <button onClick={handleCart}>Remove from Basket</button>
-               )}
+                   <button onClick={handleItems}>Remove Item Cart</button><br/>
+
            </div>
+
        </div>
+
     )
 
 }

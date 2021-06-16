@@ -2,27 +2,22 @@ import React, {useState} from 'react';
 import './signIn.css'
 import {Link, useHistory} from 'react-router-dom'
 import { useStateValue } from "./Provider";
-import { useCookies } from 'react-cookie';
 
 
 
 
-function SignIn(){
-
+function SignUp(){
 const [{}, dispatch ] = useStateValue();
 const history = useHistory();
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
-
-const handleSignIn = e =>{
+const handleSignUp = e =>{
   e.preventDefault()
   // Send request to users to API
-  console.log('signed in')
-
- fetch('http://localhost:3001/sessions', {
+  console.log('signed up')
+  fetch('http://localhost:3001/users', {
     method: 'POST',
-    credentials: "same-origin",
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -32,26 +27,19 @@ const handleSignIn = e =>{
       password: password
      })
   })
-
   .then(resp => resp.json())
   .then(function(data){
-    console.log(data);
-    if(data.user){
-       localStorage.setItem("user", data.user.id)
-       settingUserLogin()
-       console.log(localStorage)
+    console.log(data, 'signUp');
+    if(data.status === 200){
+       localStorage.setItem("user", data.id)
+       settingUserSignUp()
        history.push('/')
 
     }
-
-
   })
-    .catch(err => alert(err))
-
-
 }
 
-const settingUserLogin = () => {
+const settingUserSignUp = () => {
   console.log(localStorage.user, 'user is')
   if(localStorage.user !== ''){
     dispatch({
@@ -65,7 +53,6 @@ const settingUserLogin = () => {
     })
   }
 }
-
     return(
       <div className="login">
         <Link to='/'>
@@ -76,19 +63,19 @@ const settingUserLogin = () => {
         </Link>
 
         <div className='loginContainer'>
-          <h1>Sign-In</h1>
+          <h1>Sign-Up</h1>
           <from>
             <h5 className="loginHFive">Email</h5>
             <input className='loginInput' type='email' value={email} onChange={e => setEmail(e.target.value)}/>
 
               <h5 className="loginHFive">Password</h5>
               <input className='loginInput' type='Password' value={password} onChange={e => setPassword(e.target.value)}/>
-              <button  onClick={handleSignIn} className='signInButton'  type='submit'>Sign In</button>
+              <button  onClick={handleSignUp} className='signInButton'  type='submit'>Sign Up</button>
           </from>
 
           <p className="pLogin">By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
-          <Link to='SignUp'>
-          <button className="registration">Create Your Amazon Account</button>
+          <Link to='SignIn'>
+          <button className="registration">Already Have An Account?</button>
           </Link>
         </div>
       </div>
@@ -96,5 +83,4 @@ const settingUserLogin = () => {
 
 }
 
-
-export default SignIn;
+export default SignUp;

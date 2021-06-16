@@ -8,8 +8,18 @@ import './Subtotal.css'
 // import { useHistory } from "react-router-dom";
 
 function Subtotal() {
-    const [{ basket }] = useStateValue();
-    console.log(basket)
+
+
+    const [{ basket}, dispatch] = useStateValue();
+    console.log(basket, 'basket sub')
+
+    const clearCart = () =>{
+      console.log('remove item:')
+      dispatch({
+        type: "EMPTY_BASKET",
+          basket
+      });
+    }
     return(
       <div className="subtotal">
         <CurrencyFormat
@@ -32,6 +42,8 @@ function Subtotal() {
         />
 
         <button>Proceed to Checkout</button>
+        <button onClick={clearCart}>Delete All From Cart</button>
+
       </div>
     )
 
