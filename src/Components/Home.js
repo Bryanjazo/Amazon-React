@@ -2,10 +2,9 @@ import React, {Component} from 'react'
 import "./Home.css";
 
 // import Slideshow from './Slideshow.js'
-import Product from "./Product";
+import Product from "../Products/Product";
 
 class Home extends Component {
-
 
 
     state = {
@@ -35,7 +34,6 @@ class Home extends Component {
     //   }
     //
 
-
   render(){
 
 
@@ -64,7 +62,6 @@ class Home extends Component {
           src="https://images-na.ssl-images-amazon.com/images/G/01/em/pd21/xcm_em_Prime_Day_2021_857-USEN_D_PDS-HP-Tall-Hero_1500x600._CB667246497_.jpg"
           alt=""
         />
-
 
           {product}
 

@@ -1,7 +1,7 @@
 import React from "react";
 import './Product.css'
 // import Home from './Home.js'
-import { useStateValue } from "./Provider";
+import { useStateValue } from "../Actions/Provider";
 import StarRateIcon from '@material-ui/icons/StarRate';
 function Product({ id, title, image, price, rating }){
 

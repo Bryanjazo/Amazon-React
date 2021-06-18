@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import reducer, { initialState } from "./Components/reducer.js";
-import { StateProvider } from "./Components/Provider";
+import reducer, { initialState } from "./Actions/reducer.js";
+import { StateProvider } from "./Actions/Provider";
 
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 

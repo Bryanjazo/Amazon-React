@@ -1,6 +1,6 @@
 import React from 'react'
 import StarRateIcon from '@material-ui/icons/StarRate';
-import { useStateValue } from "./Provider";
+import { useStateValue } from "../Actions/Provider";
 import './CartProducts.css'
 
   function CartProducts({id, title, image, price, rating, hideButton}){
