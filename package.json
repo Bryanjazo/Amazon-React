@@ -13,6 +13,8 @@
     "axios": "^0.21.1",
     "babel-loader": "^8.1.0",
     "firebase": "^8.6.8",
+    "firebase-admin": "^9.9.0",
+    "firebase-functions": "^3.14.1",
     "react": "^17.0.2",
     "react-alice-carousel": "^2.5.1",
     "react-cookie": "^4.0.3",
@@ -24,6 +26,7 @@
     "react-scripts": "4.0.3",
     "react-slideshow-image": "^3.4.6",
     "redux": "^4.1.0",
+    "stripe": "^8.156.0",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.2"
   },

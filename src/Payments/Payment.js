@@ -17,7 +17,7 @@ function Payment() {
 
 
   const history = useHistory()
-  const [{basket,userDetails}] = useStateValue()
+  const [{basket,userDetails}, dispatch] = useStateValue()
   const stripeUse = useStripe();
   const elements = useElements();
   const [succeeded, setSucceed] = useState(false);
@@ -40,39 +40,32 @@ function Payment() {
     getSecret();
    }, [basket])
 
+   console.log('secret:',clientSecret)
+
    const handleSubmit = async (e) =>{
      e.preventDefault()
+     setProcessing(true)
+
+     const payload = await stripe.confirmCardPayment(clientSecret, {
+       payment_method: {
+         card: elements.getElement(CardElement)
+       }
+     })
+     .then(fetch())
+     .then(({paymentIntent}) =>{
+       // payment = paymentConfirmation
+        setSucceed(true)
+        setError(null)
+        setProcessing(false)
+
+        dispatch({
+          type: "EMPTY_BASKET",
+
+        })
+        history.replace('/orders')
+     })
    }
 
-  // const handleSubmit = async (e) =>{
-  //   console.log('submit')
-  //     e.preventDefault()
-  //
-  //     const {error, paymentMethod} = await stripe.createPaymentMethod({
-  //       type: 'card',
-  //       card: elements.getElement(CardElement)
-  //     })
-  //     if(!error){
-  //       try{
-  //         const {id} = paymentMethod
-  //         const response = await axios.post("http://localhost:3001/charges", {
-  //           user_id: localStorage.user,
-  //           amount: getBasketTotal(basket),
-  //           id: id,
-  //           description: `User ${localStorage.user}`,
-  //
-  //         })
-  //         if(response.data.success){
-  //           console.log("success Payment")
-  //           setSucceed(true)
-  //         }
-  //       } catch (error){
-  //         console.log('Error', error)
-  //       }
-  //     }else{
-  //       console.log(error.message)
-  //     }
-  // }
 
   const handleChange = (e) =>{
     console.log('change')
@@ -131,7 +124,7 @@ function Payment() {
                     prefix={"$"}
                                     />
 
-                  <button disabled={processing || succeeded} type="submit"> <span>{processing ? <p>Processing</p> : "Buy Now"}</span></button>
+                <button className="" disabled={processing |disabled| succeeded} type="submit"> <span>{processing ? <p>Processing</p> : "Buy Now"}</span></button>
                </div>
                {error && <div>{error}</div>}
             </form>

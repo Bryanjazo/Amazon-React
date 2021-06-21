@@ -7,8 +7,9 @@ import SignUp from './Oauth/SignUp.js'
 import Prime from './Components/Prime.js'
 import Payment from './Payments/Payment.js'
 import {loadStripe} from "@stripe/stripe-js"
+import Orders from './Services/Orders.js'
 import {Elements} from "@stripe/react-stripe-js"
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
 import './App.css';
 
 const promiseKey = loadStripe('pk_test_51J3RPVGzEGg3Lz1MQBnhI8vTgdjSBu4Qpf3XnXwjF9NJI16nq4Boas6sj5z40O8ktL9dReDiy0WKXgQyo9gpCoG600xt5dpi2A');
@@ -16,7 +17,7 @@ const promiseKey = loadStripe('pk_test_51J3RPVGzEGg3Lz1MQBnhI8vTgdjSBu4Qpf3XnXwj
 
 
 function App() {
-
+  let current_user = localStorage.user
   return (
     <Router>
     <div className="App">
@@ -32,15 +33,19 @@ function App() {
           </Elements>
 
         </Route>
+        <Route path='/Orders'>
+        <Orders />
+        </Route>
         <Route path='/signIn'>
 
           <SignIn />
         </Route>
         <Route path='/signUp'>
             <SignUp />
+
         </Route>
-        <Route path={`/MyPrime/${localStorage.user}`}>
-        <Prime />
+        <Route exact path={`/MyPrime/${localStorage.user}`}>
+        {current_user ? <Prime /> : <Redirect to='/'/>}
         </Route>
 
         <Route path='/'>

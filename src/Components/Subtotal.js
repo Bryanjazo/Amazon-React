@@ -17,8 +17,7 @@ function Subtotal() {
     const clearCart = () =>{
       console.log('remove item:')
       dispatch({
-        type: "EMPTY_BASKET",
-          basket
+        type: "EMPTY_BASKET"
       });
     }
     return(
@@ -44,7 +43,7 @@ function Subtotal() {
       <Link to='/Payment'>
         <button className='Checkout'>Proceed to Checkout</button>
         </Link>
-        <button onClick={clearCart}>Delete All From Cart</button>
+        <button className='Checkout' onClick={clearCart}>Delete All From Cart</button>
 
       </div>
     )
