@@ -26,22 +26,25 @@ function Payment() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
 
+
+
+
   useEffect(() => {
+         // generate the special stripe secret which allows us to charge a customer
+         const getSecret = async () => {
+             const response = await axios({
+                 method: 'post',
+                 // Stripe expects the total in a currencies subunits
+                 url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+             });
+             setClientSecret(response.data.clientSecret)
+         }
 
-    const getSecret = async () => {
-      console.log('submit')
-      const resp = await axios({
-        method: 'post',
-        //times by 100 cause stripe asks for cents
-        url: `/payments/create?total=${getBasketTotal(basket) * 100}`
-      })
-      setClientSecret(resp.data.clientSecret)
-    }
-    getSecret();
-   }, [basket])
+         getSecret();
+     }, [basket])
 
-   console.log('secret:',clientSecret)
-
+    const productKeys = basket.map(p => p.id)
+    console.log(productKeys)
    const handleSubmit = async (e) =>{
      e.preventDefault()
      setProcessing(true)
@@ -51,12 +54,24 @@ function Payment() {
          card: elements.getElement(CardElement)
        }
      })
-     .then(fetch())
+
      .then(({paymentIntent}) =>{
        // payment = paymentConfirmation
         setSucceed(true)
         setError(null)
         setProcessing(false)
+        fetch('http://localhost:3001/baskets',{
+          method: 'POST',
+           credentials: "same-origin",
+           headers: {
+             'Content-Type': 'application/json',
+             Accept: 'application/json',
+           },
+           body: JSON.stringify({
+              product_ids: productKeys,
+              user_id: localStorage.user
+             })
+        })
 
         dispatch({
           type: "EMPTY_BASKET",

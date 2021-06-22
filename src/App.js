@@ -33,7 +33,7 @@ function App() {
           </Elements>
 
         </Route>
-        <Route path='/Orders'>
+        <Route path={`/user/${localStorage.user}/Orders`}>
         <Orders />
         </Route>
         <Route path='/signIn'>
@@ -44,6 +44,7 @@ function App() {
             <SignUp />
 
         </Route>
+
         <Route exact path={`/MyPrime/${localStorage.user}`}>
         {current_user ? <Prime /> : <Redirect to='/'/>}
         </Route>
