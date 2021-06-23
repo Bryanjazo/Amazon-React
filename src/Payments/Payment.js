@@ -80,7 +80,7 @@ function Payment() {
           type: "EMPTY_BASKET",
 
         })
-        history.replace(`/users/${localStorage.user}/orders`)
+        history.replace(`/user/${localStorage.user}/orders`)
      })
    }
 

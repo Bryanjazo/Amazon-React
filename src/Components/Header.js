@@ -8,7 +8,7 @@ import './Header.css'
 
 function Header(){
 
-
+  const [search, setSearch] = useState('')
   const history = useHistory()
   const [{ basket, user, userDetails}, dispatch] = useStateValue();
 
@@ -26,6 +26,9 @@ const handleOauth = (e) =>{
 }
 
 
+const updateSearch = (e) => {
+  e.preventDefault()
+}
 
 
 console.log(user, '======user=====')
@@ -36,7 +39,7 @@ console.log(user, '======user=====')
         <img className="header_logo" src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' alt="" />
         </Link>
         <div className="header_search">
-        <input className="header_input" type="text"/>
+        <input className="header_input" type="text" value={search} onChange={updateSearch}/>
         <SearchIcon className="header_searchIconTop"/>
         </div>
 

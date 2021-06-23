@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import './Orders.css'
 import { useStateValue } from "../Actions/Provider";
 import OrderList from './Orderlist.js'
-import CheckoutProduct from "../Checkout/CartProducts.js";
 
 
 function Orders() {
@@ -30,15 +29,21 @@ function Orders() {
     }
   },[user])
 
-const listings = order.map(o => <OrderList {...o}/>)
+  // const orderIt = order.map(p => p.products <ordelist {...p}/>)
+
+
+  // console.log(orderIt)
+  // filter
+  const orderEx = order?.map(o => o.products.map(p => <OrderList />))
+
+  console.log(orderEx, 'ex')
 
     return(
       <div className="orders">
-        <h1>Your Orders,</h1>
-
-        {order.map(o => {o.map(o.products.map(p => (
-            <CheckoutProduct {...p}/>
-        )))})}
+        <h1>Your Orders:</h1>
+          <div className='orders__order'>
+            {order?.map(o => <OrderList order={o}/>)}
+            </div>
       </div>
     )
 

@@ -43,8 +43,9 @@ const [{ basket }, dispatch] = useStateValue();
                        <StarRateIcon />
                    ))}
                </div>
-                   <button onClick={handleItems}>Remove Item Cart</button><br/>
-
+               {!hideButton && (
+                    <button onClick={handleItems}>Remove Item Cart</button>
+                )}
            </div>
 
        </div>

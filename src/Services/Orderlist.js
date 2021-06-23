@@ -1,17 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import List from './List.js'
+import './Orderlist.css'
 import moment from "moment";
+import CheckoutProduct from "../Checkout/CartProducts.js";
+import CurrencyFormat from "react-currency-format";
 
-function OrderList({products, created_at}){
+function OrderList({order}){
 
 
-console.log(products, "llll")
- const productListing = products.map(p => <List {...p}/>)
+console.log(order, "llll")
+const listingsOrder = order.products.map(p => <CheckoutProduct {...p} image={p.product_image} hideButton/>)
+const totalAmpount = order.products.reduce((amount, item) => item.price + amount, 0);
+console.log(listingsOrder, "2222")
+
   return(
-    <div>
-    {productListing}
-    </div>
+    <div className='order'>
+            <h2>Order</h2>
+
+            <p className="order__id">
+                <small>{order.id}</small>
+            </p>
+                {listingsOrder}
+
+            <CurrencyFormat
+                renderText={(value) => (
+                    <h3 className="order__total">Order Total: {value}</h3>
+                )}
+                decimalScale={2}
+                value={totalAmpount}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
+            />
+        </div>
   )
 
 }
