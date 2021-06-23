@@ -44,6 +44,7 @@ function Payment() {
      }, [basket])
 
     const productKeys = basket.map(p => p.id)
+
     console.log(productKeys)
    const handleSubmit = async (e) =>{
      e.preventDefault()
@@ -60,7 +61,7 @@ function Payment() {
         setSucceed(true)
         setError(null)
         setProcessing(false)
-        fetch('http://localhost:3001/baskets',{
+        fetch('http://localhost:3001/orders',{
           method: 'POST',
            credentials: "same-origin",
            headers: {
@@ -68,8 +69,10 @@ function Payment() {
              Accept: 'application/json',
            },
            body: JSON.stringify({
+             order:{
               product_ids: productKeys,
               user_id: localStorage.user
+              }
              })
         })
 
@@ -77,7 +80,7 @@ function Payment() {
           type: "EMPTY_BASKET",
 
         })
-        history.replace('/orders')
+        history.replace(`/users/${localStorage.user}/orders`)
      })
    }
 

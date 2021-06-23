@@ -21,7 +21,7 @@ const handleOauth = (e) =>{
     })
     localStorage.user = ''
     history.push('/')
-    window.location.reload()
+    // window.location.reload()
   }
 }
 
