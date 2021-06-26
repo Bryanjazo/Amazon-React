@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {useStateValue} from '../Actions/Provider'
+import {useSelector, useDispatch} from 'react-redux'
+
 import Image from './image.js'
 import './Prime.css'
 import '../Oauth/signIn.css'
 
 function Prime(props){
-  const [{userDetails}] = useStateValue()
+    const {basket, user, userDetails } = useSelector((state) => state.basket)
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [adress, setAdress] = useState('');

@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import reducer, { initialState } from "./Actions/reducer.js";
 import { StateProvider } from "./Actions/Provider";
+import store from './redux/configureStore.js'
+import { Provider } from 'react-redux'
 
 // import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -13,9 +15,9 @@ ReactDOM.render(
   //   <Route></Route>
   // </Router>
   <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
-    <App />
-    </StateProvider>
+    <Provider store={store} >
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

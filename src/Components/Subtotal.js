@@ -4,6 +4,8 @@ import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../Actions/reducer";
 import {Link, useHistory} from 'react-router-dom'
 import { useStateValue } from "../Actions/Provider";
+import {useSelector, useDispatch} from 'react-redux'
+import {emptyBasket} from '../redux/reducerRedux.js'
 import './Subtotal.css'
 
 // import { useHistory } from "react-router-dom";
@@ -11,14 +13,14 @@ import './Subtotal.css'
 function Subtotal() {
 
 
-    const [{ basket}, dispatch] = useStateValue();
+    const {basket, user, userDetails } = useSelector((state) => state.basket)
+    const dispatch = useDispatch()
+    // const [{ basket}, dispatch] = useStateValue();
     console.log(basket, 'basket sub')
 
     const clearCart = () =>{
       console.log('remove item:')
-      dispatch({
-        type: "EMPTY_BASKET"
-      });
+      dispatch(emptyBasket());
     }
     return(
       <div className="subtotal">

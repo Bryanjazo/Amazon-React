@@ -9,6 +9,8 @@ import Payment from './Payments/Payment.js'
 import {loadStripe} from "@stripe/stripe-js"
 import Orders from './Services/Orders.js'
 import {Elements} from "@stripe/react-stripe-js"
+import {setUserDetails, setUserStatus} from './redux/reducerRedux.js'
+import {useSelector, useDispatch} from 'react-redux'
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
 import './App.css';
 
@@ -17,7 +19,16 @@ const promiseKey = loadStripe('pk_test_51J3RPVGzEGg3Lz1MQBnhI8vTgdjSBu4Qpf3XnXwj
 
 
 function App() {
+  const dispatch = useDispatch()
+
   let current_user = localStorage.user
+
+  useEffect(() => {
+    if(localStorage.user !== ''){
+      dispatch(setUserStatus(localStorage.user))
+    }
+  },[])
+  
   return (
     <Router>
     <div className="App">
@@ -33,8 +44,8 @@ function App() {
           </Elements>
 
         </Route>
-        <Route path={`/user/${localStorage.user}/Orders`}>
-        <Orders />
+        <Route exact path={`/user/:id/Orders`}>
+        {current_user ? <Orders /> : <Redirect to='/'/>}
         </Route>
         <Route path='/signIn'>
 
@@ -45,7 +56,7 @@ function App() {
 
         </Route>
 
-        <Route exact path={`/MyPrime/${localStorage.user}`}>
+        <Route path={`/MyPrime/:id`}>
         {current_user ? <Prime /> : <Redirect to='/'/>}
         </Route>
 

@@ -1,30 +1,24 @@
 import React from 'react'
 import StarRateIcon from '@material-ui/icons/StarRate';
+import {useSelector, useDispatch} from 'react-redux'
+import {removeFromCart, emptyBasket} from '../redux/reducerRedux.js'
 import { useStateValue } from "../Actions/Provider";
 import './CartProducts.css'
 
   function CartProducts({id, title, image, price, rating, hideButton}){
 
-const [{ basket }, dispatch] = useStateValue();
+// const [{ basket }, dispatch] = useStateValue();
 
-
+const dispatch = useDispatch()
 
   const handleItems = () =>{
-    console.log('remove item:')
-    dispatch({
-      type: "REMOVE_FROM_CART",
-        id: id,
-
-    });
+    console.log(id, 'remove item:')
+    dispatch(removeFromCart(id));
   }
 
   const handleCart = () =>{
     console.log('remove item:')
-    dispatch({
-      type: "EMPTY_BASKET",
-        id: id,
-
-    });
+    dispatch(emptyBasket());
   }
     return(
       <div className='checkoutProduct'>

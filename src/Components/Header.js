@@ -4,21 +4,24 @@ import {useStateValue} from '../Actions/Provider'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link, useHistory} from 'react-router-dom'
 import Prime from './Prime.js'
+import {setUser} from '../redux/reducerRedux.js'
+import {useSelector, useDispatch} from 'react-redux'
+
 import './Header.css'
 
 function Header(){
 
+  const {basket, user, userDetails } = useSelector((state) => state.basket)
+
+  const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const history = useHistory()
-  const [{ basket, user, userDetails}, dispatch] = useStateValue();
+  // const [{ basket, user, userDetails}, dispatch] = useStateValue();
 
 const handleOauth = (e) =>{
   console.log(localStorage.user, 'user is+++++++++++++++')
   if(localStorage.user !== ''){
-    dispatch({
-      type: 'SET_USER',
-      user: null
-    })
+    dispatch(setUser(null))
     localStorage.user = ''
     history.push('/')
     // window.location.reload()
@@ -31,7 +34,7 @@ const updateSearch = (e) => {
 }
 
 
-console.log(user, '======user=====')
+// console.log(user, '======user=====')
 
     return(
       <div className="header">
@@ -46,22 +49,22 @@ console.log(user, '======user=====')
         <div className="header_nav">
         <div onClick={handleOauth} className="header_option">
           <span className="header_optionLineOne">Greetings</span>
-          <Link to={!user && '/signIn' }class="SignIn">
+           <Link to={!user && '/signIn' }class="SignIn">
           <span className="header_optionLineTwo">{user ? 'Sign Out' : 'Sign In'}</span>
           </Link>
         </div>
         <div className="header_option">
-        <span className="header_optionLineOne">returs</span>
+        <span className="header_optionLineOne">{user ? 'returns' : ''}</span>
         <Link to={`/user/${localStorage.user}/Orders`} class="SignIn">
-        <span  className="header_optionLineTwo">orders</span>
+        <span  className="header_optionLineTwo">{user ? 'orders' : ''}</span>
         </Link>
 
         </div>
         <div className="header_option">
 
-        <span className="header_optionLineOne">{user ? 'Your' : ''}</span>
-        <Link  to={`/MyPrime/${localStorage.user}`} class="SignIn" >
-        <span className="header_optionLineTwo">{user ? 'Prime' : ''}</span>
+          <span className="header_optionLineOne">{user ? 'Your' : ''}</span>
+         <Link  to={`/MyPrime/${localStorage.user}`} class="SignIn" >
+         <span className="header_optionLineTwo">{user ? 'Prime' : ''}</span>
 
         </Link>
         </div>

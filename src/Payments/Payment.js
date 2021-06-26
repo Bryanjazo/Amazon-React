@@ -6,7 +6,10 @@ import CheckoutProduct from '../Checkout/CartProducts.js'
 import { getBasketTotal } from "../Actions/reducer.js";
 import {CardElement,  useStripe, useElements, injectStripe} from "@stripe/react-stripe-js";
 import {Link, useHistory} from 'react-router-dom'
+import {setUser} from '../redux/reducerRedux.js'
+import {useSelector, useDispatch} from 'react-redux'
 import axios from './axios';
+import {emptyBasket} from '../redux/reducerRedux.js'
 import {db} from "./firebase.js";
 
 
@@ -15,9 +18,10 @@ function Payment() {
 
   const stripe = useStripe()
 
-
+  const {basket, user, userDetails } = useSelector((state) => state.basket)
   const history = useHistory()
-  const [{basket,userDetails}, dispatch] = useStateValue()
+  const dispatch = useDispatch()
+  // const [{basket,userDetails}, dispatch] = useStateValue()
   const stripeUse = useStripe();
   const elements = useElements();
   const [succeeded, setSucceed] = useState(false);
@@ -25,7 +29,7 @@ function Payment() {
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
-
+  const current_user = localStorage.user
 
 
 
@@ -41,7 +45,7 @@ function Payment() {
          }
 
          getSecret();
-     }, [basket])
+     },[basket])
 
     const productKeys = basket.map(p => p.id)
 
@@ -76,10 +80,7 @@ function Payment() {
              })
         })
 
-        dispatch({
-          type: "EMPTY_BASKET",
-
-        })
+        dispatch(emptyBasket())
         history.replace(`/user/${localStorage.user}/orders`)
      })
    }
@@ -101,8 +102,9 @@ function Payment() {
             <h3>Delivery Adress</h3>
           </div>
           <div className='paymentAdress'>
-            <p>Email: {userDetails?.email}</p><br/>
-            <p>Adress: {userDetails?.adress}</p>
+            <p>Email:{current_user ? `${userDetails?.email}` : <input type='text' name='email'/>}</p><br/>
+
+            <p>Adress:{current_user ? `${userDetails?.adress}` : <input type='text' name='adress'/>}</p>
           </div>
         </div>
 

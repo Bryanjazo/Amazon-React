@@ -1,28 +1,47 @@
-import React, {Component} from 'react'
+import React, {useEffect, useState} from 'react'
+import {setUserDetails, setUserStatus} from '../redux/reducerRedux.js'
+import {useSelector, useDispatch} from 'react-redux'
+
 import "./Home.css";
 
 // import Slideshow from './Slideshow.js'
 import Product from "../Products/Product";
 
-class Home extends Component {
+function Home() {
 
 
-    state = {
-      productList: []
-    }
 
-    componentDidMount(){
-      console.log("fetch")
-    fetch('http://localhost:3001/products')
-    .then(resp => resp.json())
-    .then((productList) => {
-      this.setState({ productList: productList})
-      console.log(productList)
+    const [products, setProducts] = useState([])
+    const dispatch = useDispatch()
 
-    })
+    // componentDidMount(){
+    //   console.log("fetch")
+    // fetch('http://localhost:3001/products')
+    // .then(resp => resp.json())
+    // .then((productList) => {
+    //   this.setState({ productList: productList})
+    //   console.log(productList)
+    //     // if(localStorage.user !== ''){
+    //     //   dispatch(setUserStatus(localStorage.user))
+    //     // }
+    // })
+    //
+    // }
 
-    }
+    useEffect(() => {
+      if(localStorage.user !== ''){
+        dispatch(setUserStatus(localStorage.user))
+      }
+      fetch('http://localhost:3001/products')
+      .then(resp => resp.json())
+      .then((productList) => {
+        setProducts(productList)
+        console.log(productList)
 
+        })
+       },[])
+
+       console.log(products, '===========')
     // breakList = (array) => {
     //
     //     let newArrTwo = []
@@ -34,10 +53,10 @@ class Home extends Component {
     //   }
     //
 
-  render(){
 
 
-    const product = this.state.productList.map(productList => (
+
+    const product = products.map(productList => (
       <div className="home__row ">
            <Product
                key={productList.id}
@@ -62,14 +81,14 @@ class Home extends Component {
           src="https://images-na.ssl-images-amazon.com/images/G/01/em/pd21/xcm_em_Prime_Day_2021_857-USEN_D_PDS-HP-Tall-Hero_1500x600._CB667246497_.jpg"
           alt=""
         />
+        {product}
 
-          {product}
 
       </div>
     </div>
   );
   }
-}
+
 
 
 

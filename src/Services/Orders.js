@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react'
 import './Orders.css'
 import { useStateValue } from "../Actions/Provider";
 import OrderList from './Orderlist.js'
+import {useSelector, useDispatch} from 'react-redux'
 
 
 function Orders() {
 
-  const [{user, userDetails}] = useStateValue()
+  const {basket, user, userDetails } = useSelector((state) => state.basket)
+  // const [{user, userDetails}] = useStateValue()
   const [order, setOrders] = useState([])
 
 
@@ -34,9 +36,9 @@ function Orders() {
 
   // console.log(orderIt)
   // filter
-  const orderEx = order?.map(o => o.products.map(p => <OrderList />))
 
-  console.log(orderEx, 'ex')
+
+
 
     return(
       <div className="orders">
