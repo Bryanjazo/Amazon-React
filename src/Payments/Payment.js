@@ -49,7 +49,7 @@ function Payment() {
 
     const productKeys = basket.map(p => p.id)
 
-    console.log(productKeys)
+    console.log(clientSecret, 'secret')
    const handleSubmit = async (e) =>{
      e.preventDefault()
      setProcessing(true)
