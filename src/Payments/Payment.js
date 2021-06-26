@@ -11,7 +11,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import axios from './axios';
 import {emptyBasket} from '../redux/reducerRedux.js'
 import {db} from "./firebase.js";
-
+// current_user ? `${userDetails?.adress}` : <input type='text' name='adress'/>
 
 
 function Payment() {
@@ -104,7 +104,8 @@ function Payment() {
           <div className='paymentAdress'>
             <p>Email:{current_user ? `${userDetails?.email}` : <input type='text' name='email'/>}</p><br/>
 
-            <p>Adress:{current_user ? `${userDetails?.adress}` : <input type='text' name='adress'/>}</p>
+          <p>Adress:{current_user ? `${userDetails?.adress}` : <input type='text' name='email'/>}</p>
+
           </div>
         </div>
 
