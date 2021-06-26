@@ -18,7 +18,7 @@ const basketStore = createSlice({
   name: "basket",
   initialState:{
     basket: [],
-    user: localStorage.user,
+    user: localStorage.token,
     userDetails: {}
   },
   reducers:{
@@ -38,11 +38,13 @@ const basketStore = createSlice({
       state.basket = []
     },
     setUser: (state, action) => {
-      console.log(state,action, "kkk")
+
       state.user = action.payload
     },
     setUserDetails: (state, action) =>{
+      console.log(state.userDetails = action.payload, '+++++++++Details+++++++++')
       state.userDetails = action.payload
+
     }
   },
   extraReducers: (builder) => {

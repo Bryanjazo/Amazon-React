@@ -42,9 +42,11 @@ const handleSignIn = e =>{
   .then(function(data){
     console.log(data);
     if(data.user){
+      console.log(data.jwt, "tokennnn")
        localStorage.setItem("user", data.user.id)
+       localStorage.setItem("token", data.jwt)
        userDetailsData(data.user)
-       console.log(data, "{data}")
+       console.log(data.user, "{data}")
        settingUserLogin()
        console.log(localStorage)
        history.push('/')
@@ -59,14 +61,14 @@ const handleSignIn = e =>{
 }
 
 const userDetailsData = (data) =>{
-    console.log(data, 'k')
+    console.log(data, 'kk')
     dispatch(setUserDetails(data))
   }
 
 const settingUserLogin = () => {
-  console.log(localStorage.user, 'user is')
-  if(localStorage.user !== ''){
-    dispatch(setUser(localStorage.user))
+  console.log(localStorage.token, 'user is')
+  if(localStorage.token !== ''){
+    dispatch(setUser(localStorage.token))
   }else{
     dispatch(dispatch(setUser(null)))
   }

@@ -21,14 +21,14 @@ const promiseKey = loadStripe('pk_test_51J3RPVGzEGg3Lz1MQBnhI8vTgdjSBu4Qpf3XnXwj
 function App() {
   const dispatch = useDispatch()
 
-  let current_user = localStorage.user
+  let current_user = localStorage.token
 
   useEffect(() => {
     if(localStorage.user !== ''){
-      dispatch(setUserStatus(localStorage.user))
+      dispatch(setUserStatus(localStorage.token))
     }
   },[])
-  
+
   return (
     <Router>
     <div className="App">

@@ -1,14 +1,17 @@
 import React, {useState} from 'react';
 import './signIn.css'
 import {Link, useHistory} from 'react-router-dom'
-import { useStateValue } from "../Actions/Provider";
 import Image from '../Components/image.css'
+import {useSelector, useDispatch} from 'react-redux'
+import { useStateValue } from "../Actions/Provider";
+import {setUser} from '../redux/reducerRedux.js'
+import {setUserDetails} from '../redux/reducerRedux.js'
 
 
 
 
 function SignUp(){
-const [{}, dispatch ] = useStateValue();
+const dispatch = useDispatch()
 const history = useHistory();
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
@@ -30,37 +33,29 @@ const handleSignUp = e =>{
   })
   .then(resp => resp.json())
   .then(function(data){
-    console.log(data, 'signUp');
-    if(data.status === 200){
-       localStorage.setItem("user", data.id)
+    if(data.user){
+      console.log(data.jwt, "tokennnn")
+       localStorage.setItem("user", data.user.id)
+       localStorage.setItem("token", data.jwt)
        userDetailsDataSignUp(data.user)
        settingUserSignUp()
        history.push('/')
-
     }
   })
 }
 
 const userDetailsDataSignUp = (data) =>{
-    console.log(data, 'k')
-    dispatch({
-      type: 'SET_USER_DETAILS',
-      userDetails: data
-    })
+  console.log(data, 'k')
+  dispatch(setUserDetails(data))
   }
 
+
 const settingUserSignUp = () => {
-  console.log(localStorage.user, 'user is')
-  if(localStorage.user !== ''){
-    dispatch({
-      type: 'SET_USER',
-      user: localStorage.user
-    })
+  console.log(localStorage.token, 'user is')
+  if(localStorage.token !== ''){
+    dispatch(setUser(localStorage.token))
   }else{
-    dispatch({
-      type: 'SET_USER',
-      user: null
-    })
+    dispatch(dispatch(setUser(null)))
   }
 }
     return(
