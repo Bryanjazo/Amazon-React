@@ -14,7 +14,7 @@ function Orders() {
 
   useEffect(() => {
     if(user){
-      fetch(`https://amazon-front-end-by-bryan.herokuapp.com/users/${localStorage.user}/orders`,{
+      fetch(`https://amzn-back-end.herokuapp.com/users/${localStorage.user}/orders`,{
          credentials: "same-origin",
          headers: {
            'Content-Type': 'application/json',
