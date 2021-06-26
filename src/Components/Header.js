@@ -22,6 +22,7 @@ const handleOauth = (e) =>{
   console.log(localStorage.user, 'user is+++++++++++++++')
   if(localStorage.user !== ''){
     dispatch(setUser(null))
+    localStorage.token = ''
     localStorage.user = ''
     history.push('/')
     // window.location.reload()
@@ -39,7 +40,7 @@ const updateSearch = (e) => {
     return(
       <div className="header">
         <Link to='/'>
-        <img className="header_logo" src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' alt="" />
+        <img className="header_logo" src='./amazon-new-png.png' alt="" />
         </Link>
         <div className="header_search">
         <input className="header_input" type="text" value={search} onChange={updateSearch}/>
