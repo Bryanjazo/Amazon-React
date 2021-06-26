@@ -104,6 +104,8 @@ function Payment() {
           <div className='paymentAdress'>
             <p>Email:{current_user ? `${userDetails?.email}` : <input type='text' name='email'/>}</p><br/>
 
+          <div >{userDetails?.adress === null ? <p class="alrt-flash">please head to prime to fill adress out.</p> : ''}</div><br></br>
+
           <p>Adress:{current_user ? `${userDetails?.adress}` : <input type='text' name='email'/>}</p>
 
           </div>
@@ -125,6 +127,11 @@ function Payment() {
                   ))}
           </div>
         </div>
+        <div className="warningPayment">
+        <h1>WARNING!</h1>
+        <p>Any payment done with an actual credit/debit card will be considered a donation.</p>
+        <p>Please Use 4242 4242 4242 4242 date: 04/24, CVC:242, ZIP: Your designated zip code such as: 91764</p>
+      </div>
 
         <div className="paymentSec">
           <div className='PaymentTitle'>
@@ -144,6 +151,7 @@ function Payment() {
           thousandSeparator={true}
                     prefix={"$"}
                                     />
+
 
                 <button className="" disabled={processing |disabled| succeeded} type="submit"> <span>{processing ? <p>Processing</p> : "Buy Now"}</span></button>
                </div>
