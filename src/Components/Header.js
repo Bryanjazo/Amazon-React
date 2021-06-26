@@ -20,13 +20,11 @@ function Header(){
 
 const handleOauth = (e) =>{
   console.log(localStorage.user, 'user is+++++++++++++++')
-  if(localStorage.user !== ''){
     dispatch(setUser(null))
     localStorage.token = ''
     localStorage.user = ''
     history.push('/')
     // window.location.reload()
-  }
 }
 
 
