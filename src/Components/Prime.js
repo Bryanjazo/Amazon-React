@@ -17,7 +17,7 @@ function Prime(props){
   const handleLogin = (e) =>{
 
     console.log('-----updated------')
-    fetch(`http://localhost:3001/users/${localStorage.user}`, {
+    fetch(`https://amzn-back-end.herokuapp.com/users/${localStorage.user}`, {
       method: 'PATCH',
       credentials: "same-origin",
       headers: {

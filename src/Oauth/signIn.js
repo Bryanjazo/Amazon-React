@@ -25,7 +25,7 @@ const handleSignIn = e =>{
   // Send request to users to API
   console.log('signed in')
 
- fetch('http://localhost:3001/sessions', {
+ fetch('https://amzn-back-end.herokuapp.com/sessions', {
     method: 'POST',
     credentials: "same-origin",
     headers: {

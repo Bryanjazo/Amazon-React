@@ -32,7 +32,7 @@ function Home() {
       if(localStorage.user !== ''){
         dispatch(setUserStatus(localStorage.user))
       }
-      fetch('http://localhost:3001/products')
+      fetch('https://amzn-back-end.herokuapp.com/products')
       .then(resp => resp.json())
       .then((productList) => {
         setProducts(productList)

@@ -65,7 +65,7 @@ function Payment() {
         setSucceed(true)
         setError(null)
         setProcessing(false)
-        fetch('http://localhost:3001/orders',{
+        fetch('https://amzn-back-end.herokuapp.com/orders',{
           method: 'POST',
            credentials: "same-origin",
            headers: {

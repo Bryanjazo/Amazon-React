@@ -20,7 +20,7 @@ const handleSignUp = e =>{
   e.preventDefault()
   // Send request to users to API
   console.log('signed up')
-  fetch('http://localhost:3001/users', {
+  fetch('https://amzn-back-end.herokuapp.com/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
