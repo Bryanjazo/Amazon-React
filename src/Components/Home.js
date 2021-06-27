@@ -57,6 +57,7 @@ function Home() {
 
 
     const product = products.map(productList => (
+
       <div className="home__row ">
            <Product
                key={productList.id}

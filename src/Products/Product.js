@@ -6,14 +6,14 @@ import { useStateValue } from "../Actions/Provider";
 import {addToBasket} from '../redux/reducerRedux.js'
 import StarRateIcon from '@material-ui/icons/StarRate';
 
-function Product({ id, title, image, price, rating }){
+function Product({ id, title, image, price, rating, description}){
 
   // const [{ basket }, dispatch] = useStateValue();
 const {basket, user, userDetails} = useSelector((state) => state.basket);
 const dispatch = useDispatch()
   const basketAdd = () => {
  // dispatch the item into the data layer
- dispatch(addToBasket({id, title, image, price, rating}));
+ dispatch(addToBasket({id, title, image, price, rating, description}));
 };
 
 
@@ -21,6 +21,7 @@ const dispatch = useDispatch()
       <div className="product">
      <div className="product_info">
        <p>{title}</p>
+       <p>{description}</p>
        <p className="product__price">
          <small>$</small>
          <strong>{price}</strong>
