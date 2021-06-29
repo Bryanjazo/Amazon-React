@@ -1,11 +1,12 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import {useStateValue} from '../Actions/Provider'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {Link, useHistory} from 'react-router-dom'
 import Prime from './Prime.js'
 import {setUser} from '../redux/reducerRedux.js'
+import {setUserStatus} from '../redux/reducerRedux.js'
 import {useSelector, useDispatch} from 'react-redux'
 
 import './Header.css'
@@ -14,10 +15,12 @@ function Header(){
 
   const {basket, user, userDetails } = useSelector((state) => state.basket)
 
+
   const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const history = useHistory()
   // const [{ basket, user, userDetails}, dispatch] = useStateValue();
+  console.log(userDetails, "===============")
 
 const handleOauth = (e) =>{
   console.log(localStorage.user, 'user is+++++++++++++++')
@@ -30,6 +33,9 @@ const handleOauth = (e) =>{
   }
 }
 
+  useEffect(() => {
+
+    },[])
 
 const updateSearch = (e) => {
   e.preventDefault()

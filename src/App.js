@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     if(localStorage.user !== ''){
-      dispatch(setUserStatus(localStorage.token))
+      dispatch(setUserStatus(localStorage.user))
     }
   },[])
 
@@ -44,8 +44,8 @@ function App() {
           </Elements>
 
         </Route>
-        <Route exact path={`/user/:id/Orders`}>
-        {current_user ? <Orders /> : <Redirect to='/'/>}
+        <Route path={`/user/:id/Orders`}>
+        {current_user != null ? <Orders /> : <Redirect to='/'/>}
         </Route>
         <Route path='/signIn'>
 
@@ -57,7 +57,7 @@ function App() {
         </Route>
 
         <Route path={`/MyPrime/:id`}>
-        {current_user ? <Prime /> : <Redirect to='/'/>}
+        {current_user != null ? <Prime /> : <Redirect to='/'/>}
         </Route>
 
         <Route path='/'>

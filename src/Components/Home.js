@@ -41,7 +41,6 @@ function Home() {
         })
        },[])
 
-       console.log(products, '===========')
     // breakList = (array) => {
     //
     //     let newArrTwo = []

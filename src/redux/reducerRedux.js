@@ -7,9 +7,13 @@ export const getBasketTotal = (basket) =>
 export const setUserStatus = createAsyncThunk(
   'basket/setUserStatus',
   async(id) => {
+    console.log(id)
       const response = await fetch(`https://amzn-back-end.herokuapp.com/users/${id}`)
         const data = await response.json()
+
         return data
+
+        console.log(data)
   }
 )
 
