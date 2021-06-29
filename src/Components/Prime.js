@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {useStateValue} from '../Actions/Provider'
 import {useSelector, useDispatch} from 'react-redux'
-
+import {setUserStatus} from '../redux/reducerRedux.js'
 import Image from './image.js'
 import './Prime.css'
 import '../Oauth/signIn.css'
 
 function Prime(props){
     const {basket, user, userDetails } = useSelector((state) => state.basket)
+  const dispatch = useDispatch()
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [adress, setAdress] = useState('');
@@ -37,6 +38,13 @@ function Prime(props){
       console.log(data)
     })
   }
+
+  useEffect(() => {
+    if(localStorage.user !== ''){
+      dispatch(setUserStatus(localStorage.user))
+    }
+  },[userDetails])
+
   return (
 
     <div className="prime">

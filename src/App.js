@@ -23,11 +23,6 @@ function App() {
 
   let current_user = localStorage.token
 
-  useEffect(() => {
-    if(localStorage.user !== ''){
-      dispatch(setUserStatus(localStorage.user))
-    }
-  },[])
 
   return (
     <Router>
