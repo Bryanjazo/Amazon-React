@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import './signIn.css'
 import {Link, useHistory} from 'react-router-dom'
-import Image from '../Components/image.css'
+import Image from '../Components/image.js'
 import {useSelector, useDispatch} from 'react-redux'
 import { useStateValue } from "../Actions/Provider";
 import {setUser} from '../redux/reducerRedux.js'
 import {setUserDetails} from '../redux/reducerRedux.js'
+
 
 
 
@@ -61,10 +62,7 @@ const settingUserSignUp = () => {
     return(
       <div className="login">
         <Link to='/'>
-        <img
-          className="logo-SignUp"
-          alt=''
-          src='./login.png'/>
+          <Image src="./login.png"/>
         </Link>
 
         <div className='loginContainer'>

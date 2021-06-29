@@ -5,8 +5,8 @@ import {useSelector, useDispatch} from 'react-redux'
 import { useStateValue } from "../Actions/Provider";
 import {setUser} from '../redux/reducerRedux.js'
 import {setUserDetails} from '../redux/reducerRedux.js'
+import Image from '../Components/image.js'
 
-import Image from '../Components/image.css'
 
 
 
@@ -57,7 +57,6 @@ const handleSignIn = e =>{
   })
     .catch(err => alert(err))
 
-
 }
 
 const userDetailsData = (data) =>{
@@ -77,10 +76,7 @@ const settingUserLogin = () => {
     return(
       <div className="login">
         <Link to='/'>
-        <img
-          className="logo-SignUp"
-          alt=''
-          src='./login.png'/>
+          <Image src="./login.png"/>
         </Link>
 
         <div className='loginContainer'>

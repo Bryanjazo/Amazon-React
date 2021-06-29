@@ -17,7 +17,6 @@ function Header(){
 
 
   const dispatch = useDispatch()
-  const [search, setSearch] = useState('')
   const history = useHistory()
   // const [{ basket, user, userDetails}, dispatch] = useStateValue();
   console.log(userDetails, "===============")
@@ -50,7 +49,7 @@ const updateSearch = (e) => {
         <img className="header_logo" src='./amazon-new-png.png' alt="" />
         </Link>
         <div className="header_search">
-        <input className="header_input" type="text" value={search} onChange={updateSearch}/>
+        <input className="header_input" type="text" />
         <SearchIcon className="header_searchIconTop"/>
         </div>
 
