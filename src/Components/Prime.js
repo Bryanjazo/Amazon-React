@@ -13,7 +13,7 @@ function Prime(props){
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [adress, setAdress] = useState('');
-  console.log(userDetails, '||||||||DEtails')
+
 
   const handleLogin = (e) =>{
 
@@ -40,7 +40,7 @@ function Prime(props){
   }
 
   useEffect(() => {
-    if(localStorage.user !== ''){
+    if(localStorage.user != ''){
       dispatch(setUserStatus(localStorage.user))
     }
   },[userDetails])

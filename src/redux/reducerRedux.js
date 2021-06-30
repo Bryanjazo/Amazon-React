@@ -5,14 +5,13 @@ export const getBasketTotal = (basket) =>
   basket?.reduce((amount, item) => item.price + amount, 0);
 
 export const setUserStatus = createAsyncThunk(
+
   'basket/setUserStatus',
   async(id) => {
     console.log(id)
       const response = await fetch(`https://amzn-back-end.herokuapp.com/users/${id}`)
         const data = await response.json()
-
         return data
-
         console.log(data)
   }
 )
