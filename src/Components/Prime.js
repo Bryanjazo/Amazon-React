@@ -49,7 +49,7 @@ function Prime(props){
 
     <div className="prime">
 
-      <Image src={'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png'}/>
+      <Image src={'./login.png'}/>
         <div className="prime__container">
           <div className='prime_details'>
             <h1>hello,{userDetails.name}</h1>

@@ -90,9 +90,9 @@ const settingUserLogin = () => {
               <button  onClick={handleSignIn} className='signInButton'  type='submit'>Sign In</button>
           </from>
 
-          <p className="pLogin">By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+          <p className="pLogin">By continuing, you agree to Jamazon's Conditions of Use and Privacy Notice.</p>
           <Link to='SignUp'>
-          <button className="registration">Create Your Amazon Account</button>
+          <button className="registration">Create Your Jamazon Account</button>
           </Link>
         </div>
       </div>

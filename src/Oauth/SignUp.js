@@ -76,7 +76,7 @@ const settingUserSignUp = () => {
               <button  onClick={handleSignUp} className='signInButton'  type='submit'>Sign Up</button>
           </from>
 
-          <p className="pLogin">By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+          <p className="pLogin">By continuing, you agree to Jamazon's Conditions of Use and Privacy Notice.</p>
           <Link to='SignIn'>
           <button className="registration">Already Have An Account?</button>
           </Link>
