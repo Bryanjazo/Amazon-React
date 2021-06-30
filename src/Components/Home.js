@@ -10,7 +10,6 @@ import Product from "../Products/Product";
 function Home() {
 
 
-
     const [products, setProducts] = useState([])
     const dispatch = useDispatch()
 
@@ -41,6 +40,7 @@ function Home() {
         })
        },[])
 
+
     // breakList = (array) => {
     //
     //     let newArrTwo = []
@@ -51,7 +51,7 @@ function Home() {
     //
     //   }
     //
-
+    const [inputType, setInput] = useState('')
 
 
 
@@ -74,14 +74,17 @@ function Home() {
        )
 
   return (
-    <div className="home">
+    <div className="home">.com
       <div className="home__container">
         <img
           className="home__image"
           src="https://images-na.ssl-images-amazon.com/images/G/01/em/pd21/xcm_em_Prime_Day_2021_857-USEN_D_PDS-HP-Tall-Hero_1500x600._CB667246497_.jpg"
           alt=""
         />
+
+
         {product}
+
 
 
       </div>

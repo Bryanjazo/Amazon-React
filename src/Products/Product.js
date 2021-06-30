@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './Product.css'
 // import Home from './Home.js'
 import {useSelector, useDispatch} from 'react-redux'
@@ -10,15 +10,22 @@ function Product({ id, title, image, price, rating, description}){
 
   // const [{ basket }, dispatch] = useStateValue();
 const {basket, user, userDetails} = useSelector((state) => state.basket);
+const [buttonAdd, setButtonAdd] = useState(0)
 const dispatch = useDispatch()
   const basketAdd = () => {
  // dispatch the item into the data layer
- dispatch(addToBasket({id, title, image, price, rating, description}));
+ dispatch(addToBasket({id, title, image, price, rating, description, buttonAdd}));
 };
 
-
+console.log(buttonAdd, '=========')
+const handleAdd = (e) =>{
+  e.preventDefault()
+  console.log('here123')
+}
     return(
+
       <div className="product">
+
      <div className="product_info">
        <p>{title}</p>
        <p>{description}</p>
@@ -38,7 +45,9 @@ const dispatch = useDispatch()
      <img src={image} alt="" />
 
      <button  onClick={basketAdd}>Add to Basket</button>
+     <button onClick={handleAdd} type="submit">{buttonAdd}</button>
    </div>
+
     )
 
 
