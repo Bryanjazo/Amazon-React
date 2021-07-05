@@ -74,7 +74,7 @@ function Home() {
        )
 
   return (
-    <div className="home">.com
+    <div className="home">
       <div className="home__container">
         <img
           className="home__image"
