@@ -45,7 +45,6 @@ const handleAdd = (e) =>{
      <img src={image} alt="" />
 
      <button  onClick={basketAdd}>Add to Basket</button>
-     <button onClick={handleAdd} type="submit">{buttonAdd}</button>
    </div>
 
     )
