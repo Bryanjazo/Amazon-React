@@ -17,13 +17,13 @@ import { Alert } from '@material-ui/lab';
 
 function Payment() {
 
-  const stripe = useStripe()
+
 
   const {basket, user, userDetails } = useSelector((state) => state.basket)
   const history = useHistory()
   const dispatch = useDispatch()
   // const [{basket,userDetails}, dispatch] = useStateValue()
-  const stripeUse = useStripe();
+  const stripe = useStripe();
   const elements = useElements();
   const [succeeded, setSucceed] = useState(false);
   const [processing, setProcessing] = useState(false);
@@ -33,22 +33,20 @@ function Payment() {
   const current_user = localStorage.user
 
 
+     useEffect(() => {
+        // generate the special stripe secret which allows us to charge a customer
+        const getClientSecret = async () => {
+            const response = await axios({
+                method: 'post',
+                // Stripe expects the total in a currencies subunits
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+            });
+            setClientSecret(response.data.clientSecret)
+        }
 
-  useEffect(() => {
-         // generate the special stripe secret which allows us to charge a customer
-         const getSecret = async () => {
-             const response = await axios({
-                 method: 'post',
-                 // Stripe expects the total in a currencies subunits
-                 url: `/payments/create?total=${getBasketTotal(basket) * 100}`
-             });
-             setClientSecret(response.data.clientSecret)
-         }
+        getClientSecret();
+    }, [basket])
 
-         getSecret();
-     },[basket])
-
-    const productKeys = basket.map(p => p.id)
 
     console.log(clientSecret, 'secret')
    const handleSubmit = async (e) =>{
@@ -93,6 +91,8 @@ function Payment() {
     setError(e.error ? e.error.message : '')
 
   }
+
+  const productKeys = basket.map(p => p.id)
 
     return(
       <div className='payment'>

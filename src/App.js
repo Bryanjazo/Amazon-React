@@ -14,7 +14,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom"
 import './App.css';
 
-const promiseKey = loadStripe('pk_test_51J3RPVGzEGg3Lz1MQBnhI8vTgdjSBu4Qpf3XnXwjF9NJI16nq4Boas6sj5z40O8ktL9dReDiy0WKXgQyo9gpCoG600xt5dpi2A');
+const promise = loadStripe('pk_test_51J3RPVGzEGg3Lz1MQBnhI8vTgdjSBu4Qpf3XnXwjF9NJI16nq4Boas6sj5z40O8ktL9dReDiy0WKXgQyo9gpCoG600xt5dpi2A');
 
 
 
@@ -33,11 +33,9 @@ function App() {
           <Checkout />
         </Route>
         <Route path='/Payment'>
-
-          <Elements stripe={promiseKey}>
+          <Elements stripe={promise}>
             <Payment />
           </Elements>
-
         </Route>
         <Route path={`/user/:id/Orders`}>
         {current_user != null ? <Orders /> : <Redirect to='/'/>}

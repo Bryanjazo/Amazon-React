@@ -17,7 +17,7 @@ const dispatch = useDispatch()
  dispatch(addToBasket({id, title, image, price, rating, description, buttonAdd}));
 };
 
-console.log(buttonAdd, '=========')
+
 const handleAdd = (e) =>{
   e.preventDefault()
   console.log('here123')
